@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link href="./../style.css" rel="stylesheet">
+</head>
+
+<body>
+    <h1>Hi there from Ejs</h1>
+    <% data.forEach(item => { %>
+        <li class="todo-item">
+            <a href="/edit/<%= item._id%>" <%=onclick="console.log(`hi`)" %> >
+                <%= item.name %>
+            </a>
+        </li>
+
+        <%  }); %>
+
+
+            <%- include("inputFrom.ejs") %>
+
+                <!-- * SCRIPTS * -->
+                <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+                <script src="./../app.js"></script>
+</body>
+
+</html>

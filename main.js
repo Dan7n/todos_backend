@@ -38,17 +38,35 @@ app.post("/", async(req, res) => {
     res.redirect("/")
 })
 
+app.get("/delete/:id", async(req, res) => {
+    const elementToBeDeleted = await Todo.deleteOne({ _id: req.params.id })
+    res.redirect("/")
+})
+
+app.get("/check/:id", async(req, res) => {
+    const checkedElement = await Todo.findOne({ _id: req.params.id })
+    await Todo.updateOne({ checkedElement }, { $set: { checked: true } }, (e, s) => { if (e) { console.log(e) } });
+    console.log(checkedElement)
+        // if (checkedElement.checked = false) {
+        //     await Todo.updateOne({ checkedElement }, { checked: true })
+        // } else if (checkedElement.checked = true) {
+        //     await Todo.updateOne({ checkedElement }, { checked: false })
+        // }
+    res.redirect("/")
+});
+
 app.get("/edit/:id", async(req, res) => {
     const elementToBeEdited = await Todo.findOne({
         _id: req.params.id
     });
+    console.log(elementToBeEdited._id)
     const dataFromDB = await Todo.find()
     res.render("edit", { data: dataFromDB, elementToBeEdited: elementToBeEdited })
-    app.post("/edit", async(req, res) => {
+    app.post("/edit/:id", async(req, res) => {
         const updatedElement = await Todo.updateOne({ elementToBeEdited }, {
             name: req.body.name
         })
-
+        res.redirect("/")
     })
 })
 

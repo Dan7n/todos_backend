@@ -23,5 +23,6 @@ const sayHi = (time, element) => {
 }
 
 function getTime() {
-    return `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`;
+    const minutes = new Date().getMinutes() > 10 ? "0" + new Date().getMinutes() : new Date().getMinutes();
+    return `${new Date().getHours()}:${minutes}:${new Date().getSeconds()}`;
 }

@@ -3,7 +3,6 @@ const app = express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 require("dotenv/config");
-const sassMiddleware = require('node-sass-middleware');
 const PORT = process.env.PORT || 5000;
 const Todo = require("./models/Todos")
 
@@ -14,6 +13,7 @@ const mongooseSettings = {
 
 app.use(express.static(__dirname + "/public"))
 app.use(bodyParser.urlencoded({ extended: false }))
+
 app.set("view engine", "ejs");
 
 app.get('/', async(req, res) => {

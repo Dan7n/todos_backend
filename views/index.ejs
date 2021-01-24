@@ -13,12 +13,19 @@
 <body>
     <h1 class="welcome"></h1>
     <p class="welcome-2">Let's get productive today!</p>
+
+    <div class="time-and-date">
+        <p class="time"></p>
+        <p class="date"></p>
+    </div>
+
+    
     <ul>
         <% data.forEach(todoItem => { %>
-            <li class="todo-item-li <% if (todoItem.checked === true) { %> <%= " checked " %> <%};%>">
+            <li class="todo-item-li">
                 <div class="todo-item-container">
-                    <a class="checkbox" href="/check/<%=todoItem._id%>"><svg <% if (todoItem.checked === true)  { %>fill='#00acea'<%};%> xmlns="http://www.w3.org/2000/svg" height="3rem" width="3rem" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px"><title>Artboard 82</title><path d="M47,60h.17a3,3,0,0,0,2.08-1l15-17-4.5-4-13,14.73-7.75-7-4,4.46,10,9A3,3,0,0,0,47,60Z"/><circle cx="26" cy="36" r="3" transform="translate(-18.18 40.52) rotate(-60)"/><circle cx="36" cy="26" r="3" transform="translate(-8.18 21.48) rotate(-30)"/><path d="M50,19H47v6h3A25,25,0,1,1,25,50V47H19v3A31,31,0,1,0,50,19Z"/></svg></a>
-                    <p>
+                    <a class="checkbox" href="/check/<%=todoItem._id%>"><svg <% if (todoItem.checked === true)  { %>fill='#00acea'<%};%> xmlns="http://www.w3.org/2000/svg" height="2.5rem" width="3rem" data-name="Layer 1" viewBox="0 0 100 125" x="0px" y="0px"><title>Artboard 82</title><path d="M47,60h.17a3,3,0,0,0,2.08-1l15-17-4.5-4-13,14.73-7.75-7-4,4.46,10,9A3,3,0,0,0,47,60Z"/><circle cx="26" cy="36" r="3" transform="translate(-18.18 40.52) rotate(-60)"/><circle cx="36" cy="26" r="3" transform="translate(-8.18 21.48) rotate(-30)"/><path d="M50,19H47v6h3A25,25,0,1,1,25,50V47H19v3A31,31,0,1,0,50,19Z"/></svg></a>
+                    <p <% if (todoItem.checked === true) { %> class=<%= " checked " %> <%};%>>
                         <%= todoItem.name %>
                     </p>
                     <div class="icons">
@@ -31,7 +38,8 @@
     </ul>
 
 
-
+    <img src="./../assets/music.svg" alt="Guy practicing the guitar" id="img1">
+    <img src="./../assets/painting.svg" alt="Girl painting a picture" id="img2">
 
     <%- include("inputFrom.ejs") %>
 

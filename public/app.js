@@ -4,7 +4,9 @@ $(document).ready(function() {
 
     sayHi(hourOfDay, welcome)
 
-
+    setInterval(function(){
+        $(".time").html(getTime())
+    }, 1000);
 
 })
 
@@ -18,4 +20,8 @@ const sayHi = (time, element) => {
     } else {
         console.log("error")
     }
+}
+
+function getTime() {
+    return `${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`;
 }

@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
-    "scripts": {
-        "start": "nodemon main.js"
+    "scripts": { 
+        "start": "nodemon main.js & browser-sync start --proxy 'localhost:4000/' --files 'public'"
     },
     "keywords": [],
     "author": "",
@@ -17,6 +17,7 @@
         "node-sass-middleware": "^0.11.0"
     },
     "devDependencies": {
-        "@types/dotenv": "^8.2.0"
+        "@types/dotenv": "^8.2.0",
+        "browser-sync": "^2.26.13"
     }
 }

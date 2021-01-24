@@ -55,6 +55,7 @@ border-radius: 4px;
     padding: 0 3rem;
     padding-top: 2rem;
     transition: all 0.1s ease-in-out;
+    border: 1px solid rgba(0, 0, 0, 0.205);
 }
 
 ul:hover {
@@ -64,9 +65,9 @@ ul:hover {
     0 -16px 1px -4px rgba(0,0,0,0.15),
     0 -30px 0 -10px #eee,
     0 -30px 1px -9px rgba(0,0,0,0.15);
-    transform: translateY(-6px);
+    transform: translateY(-2px);
+    background-color: blue;
 }
-
 
 .todo-item-li {
     width: 100%;
@@ -96,3 +97,35 @@ a {
 .checked {
     color: #00acea;
 }
+
+.new-todo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.new-todo-text {
+    width: 20%;
+    height: 60px;
+    border-radius: 10px;
+    font-family: 'Gilroy', sans-serif;
+    font-size: 18px;
+    padding-left: 4px;
+    border: 1px solid black !important;
+    -webkit-box-shadow: 6px 6px 0px -2px #000000; 
+    box-shadow: 6px 6px 0px -2px #000000;
+    transition: all 0.1s ease;
+    margin-left: 2rem;
+}
+
+.new-todo-text:focus {
+    outline: none !important;
+    background-color: hsl(180, 5%, 92%);
+}
+
+.new-todo-icon {
+    cursor: pointer;
+}
+

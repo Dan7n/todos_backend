@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 require("dotenv/config");
 const PORT = process.env.PORT || 5000;
 const Todo = require("./models/Todos")
+const alert = require("alert");
+
 
 const mongooseSettings = {
     useNewUrlParser: true,
@@ -16,21 +18,31 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.set("view engine", "ejs");
 
+
+
+// ! fix this so that it prevents the from from submitting
 app.get('/', async(req, res) => {
     try {
         const dataFromDB = await Todo.find()
         res.render("index", { data: dataFromDB, error: "" })
     } catch (err) {
-        const error = err;
-        res.render("index", { error: error })
+        if (err) {
+            throw new Error("Please enter correct data in the input field")
+        }
     }
 })
 
 app.post("/", async(req, res) => {
-    const newData = await new Todo({
-        name: req.body.task
-    }).save();
-    res.redirect("/")
+    try {
+        const newData = await new Todo({
+            name: req.body.task
+        }).save();
+        res.redirect("/")
+    } catch (err) {
+        if (err) {
+            res.render("index", {error: err})
+                }
+    }
 })
 
 app.get("/delete/:id", async(req, res) => {

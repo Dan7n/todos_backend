@@ -13,7 +13,9 @@ body {
     background: linear-gradient(to right, #ece9e6, #ffffff); 
     color: #202147;
     position: relative;
+    overflow: hidden;
 }
+
 
 .welcome {
     margin: 0;
@@ -39,9 +41,23 @@ body {
     font-size: 1.05rem;
 }
 
+.time-and-date {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 40%;
+    margin: 0;
+    margin-bottom: .7rem;
+}
+
+.time-and-date > p {
+    margin: 0;
+    font-size: 1.1rem
+}
+
 ul {
     width: 40%;
-    height: 60vh;
+    height: 55vh;
     box-shadow:
     0 -1px 1px rgba(0,0,0,0.15),
     0 -10px 0 -5px #eee,
@@ -59,6 +75,7 @@ ul {
     padding-top: 2rem;
     transition: all 0.1s ease-in-out;
     border: 1px solid rgba(0, 0, 0, 0.205);
+    overflow: auto;
 }
 
 ul:hover {
@@ -71,9 +88,36 @@ ul:hover {
     transform: translateY(-2px);
 }
 
+ul > img {
+    z-index: 2; 
+    height: 30vh;
+    width: 30vw;
+    animation: fadeIn 0.3s;
+
+    /* opacity: 0; */
+}
+
+ul > h1 {
+    text-align: center;
+    animation: fadeIn 0.3s;
+
+    /* opacity: 0; */
+}
 .todo-item-li {
     width: 100%;
     list-style: none;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .todo-item-container {

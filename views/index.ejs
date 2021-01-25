@@ -19,8 +19,12 @@
         <p class="date"></p>
     </div>
 
-    
-    <ul>
+    <% if (error) { %>
+        <h1>Please enter data</h1>
+   <% }; %> 
+
+
+    <ul id="ulElement">
         <% data.forEach(todoItem => { %>
             <li class="todo-item-li">
                 <div class="todo-item-container">

@@ -60,6 +60,7 @@ app.get("/check/:id", async (req, res) => {
     res.redirect("/")
 });
 
+
 app.get("/edit/:id", async(req, res) => {
     const elementToBeEdited = await Todo.findOne({
         _id: req.params.id

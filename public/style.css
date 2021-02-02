@@ -88,6 +88,7 @@ ul {
     transition: all 0.1s ease-in-out;
     border: 1px solid rgba(0, 0, 0, 0.205);
     overflow: auto;
+    position: relative;
 }
 
 ul:hover {
@@ -111,6 +112,28 @@ ul > h1 {
     text-align: center;
     animation: fadeIn 0.3s;
 }
+
+.data-pages{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+    align-self: flex-end;
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%)
+
+
+}
+
+.data-pages > a {
+    font-size: 1.1rem;
+    text-decoration: none;
+    color: var(--font-color-main);
+}
+
 .todo-item-li {
     width: 100%;
     list-style: none;
@@ -207,4 +230,10 @@ img {
     position: absolute;
     bottom: 0;
     right: -3rem;
+}
+
+a.disabled {
+    pointer-events: none;
+    color: gray;
+    cursor: default;
 }

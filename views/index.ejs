@@ -44,6 +44,16 @@
                 </div>
             </li>
             <% }); %>
+
+            <div class="data-pages">
+                <a href="?page=<%= page - 1 %>&limit=<%= limit %>" <% if (disablePrev) { %>
+                    class="disabled" 
+              <% }; %>>Previous Page</a>
+
+                <a href="?page=<%= page + 1 %>&limit=<%= limit %>" <% if (disableNext) { %> 
+                    class="disabled" 
+              <% }; %>>Next Page</a>
+            </div>
     </ul>
 
 

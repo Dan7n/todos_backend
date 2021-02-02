@@ -7,21 +7,23 @@ $(document).ready(function() {
     const whatDayIsIt = daysOfWeek[new Date().getDay()];
     const $ulElement = $("#ulElement")
     const ulChildren = $("ul").children().length;
+    const nightModeToggle = $("#toggle");
 
 
     //check if darkmode is enabled
-    const localStorageCheck = localStorage.getItem("darkMode")
+    const localStorageCheck = JSON.parse(localStorage.getItem("darkMode"))
     if (localStorageCheck && localStorageCheck !== null) {
         console.log(localStorageCheck)
-        if (localStorageCheck === "false") {
-            toggleNightModeOn()
-            $("#toggle").prop("checked", true)
-
-        } else if (localStorageCheck === "true") {
-            toggleNightModeOff()
-            $("#toggle").prop("checked", false)
-        }
+        nightModeToggle.prop("checked", localStorageCheck)
     }
+// if (localStorageCheck === "false") {
+        //     toggleNightModeOn()
+        //     $("#toggle").prop("checked", true)
+        // } else if (localStorageCheck === "true") {
+        //     toggleNightModeOff()
+        //     $("#toggle").prop("checked", false)
+        // }
+
 
     //display a live clock and date of year
     $(".time").html(getTime())
@@ -49,7 +51,12 @@ $(document).ready(function() {
     }, 1000);
 
     //darkmode toggle
-    $("#toggle").on("click", toggleNightMode)
+    // $("#toggle").on("click", toggleNightMode)
+    $("#toggle").on("click", function (){
+        console.log($(this).prop("checked"), localStorageCheck)
+
+        toggleNightMode($(this))
+    })
 })
 
 
@@ -83,31 +90,33 @@ function getDate() {
 
 
 // !TODO fix this:
-function toggleNightMode() {
-    if (!$(this).prop("checked")) {
-        document.body.style.setProperty("--gradient-from", "#394265")
-        document.body.style.setProperty("--gradient-to", "#928DAB")
-        document.body.style.setProperty("--stroke-color", "#394265")
-        document.body.style.setProperty("--ul-bg-main", "hsl(227.7,27.8%,29%)")
-        document.body.style.setProperty("--font-color-main", "#f5d1ee")
-        window.localStorage.setItem("darkMode", "true")
-    } else {
+function toggleNightMode(element) {
+    if (element.prop("checked") === true){
         document.body.style.setProperty("--gradient-from", "#ece9e6")
         document.body.style.setProperty("--gradient-to", "#ffffff")
         document.body.style.setProperty("--stroke-color", "#fee440")
         document.body.style.setProperty("--ul-bg-main", "#f4f5f5")
         document.body.style.setProperty("--font-color-main", "#202147")
-        window.localStorage.setItem("darkMode", "false")
-            }
-}
+        window.localStorage.setItem("darkMode", "false") } 
+        
+        else if (element.prop("checked") === false) {
+            document.body.style.setProperty("--gradient-from", "#394265")
+            document.body.style.setProperty("--gradient-to", "#928DAB")
+            document.body.style.setProperty("--stroke-color", "#394265")
+            document.body.style.setProperty("--ul-bg-main", "hsl(227.7,27.8%,29%)")
+            document.body.style.setProperty("--font-color-main", "#f5d1ee")
+            window.localStorage.setItem("darkMode", "true")    
+        }
+    }  
+
 
 function toggleNightModeOn() {
+    window.localStorage.setItem("darkMode", "true")
     document.body.style.setProperty("--gradient-from", "#394265")
     document.body.style.setProperty("--gradient-to", "#928DAB")
     document.body.style.setProperty("--stroke-color", "#394265")
     document.body.style.setProperty("--ul-bg-main", "hsl(227.7,27.8%,29%)")
     document.body.style.setProperty("--font-color-main", "#f5d1ee")
-    window.localStorage.setItem("darkMode", "true")
 }
 
 function toggleNightModeOff() {

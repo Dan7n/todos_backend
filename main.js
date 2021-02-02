@@ -17,9 +17,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set("view engine", "ejs");
 
-// ! fix this so that it prevents the from from submitting
 app.get("/", async (req, res) => {
   try {
+    //result sorting
+    const sort = req.query.sort || "";
+
+    //result pagination ---
     const limit = 4;
     const page = Number(req.query.page) || 1;
     const dataCount = await Todo.find().countDocuments().exec();
@@ -33,16 +36,22 @@ app.get("/", async (req, res) => {
 
     if (page === 1) {
       disablePrev = true;
+      // !Renver something here, like an error.ejs or something
     }
 
     if (page === numberOfPagesInDB) {
       disableNext = true;
     }
 
-    const dataFromDB = await Todo.find().limit(limit).skip(startIndex);
+    const dataFromDB = await Todo.find()
+      .limit(limit)
+      .skip(startIndex)
+      .sort(sort);
+
     res.render("index", {
       data: dataFromDB,
       error: "",
+      sort: sort,
       page: page,
       dataCount: dataCount,
       limit: limit,

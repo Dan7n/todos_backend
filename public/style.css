@@ -113,22 +113,28 @@ ul > h1 {
     animation: fadeIn 0.3s;
 }
 
-.data-pages{
+.data-sorting{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: bottom;
     align-items: center;
-    gap: 3rem;
+    gap: 1rem;
     align-self: flex-end;
     position: absolute;
     bottom: 4px;
     left: 50%;
     transform: translateX(-50%)
-
-
 }
 
-.data-pages > a {
+.data-sorting > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem
+}
+
+.data-sorting > div > a {
     font-size: 1.1rem;
     text-decoration: none;
     color: var(--font-color-main);

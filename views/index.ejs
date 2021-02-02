@@ -45,15 +45,25 @@
             </li>
             <% }); %>
 
-            <div class="data-pages">
-                <a href="?page=<%= page - 1 %>&limit=<%= limit %>" <% if (disablePrev) { %>
-                    class="disabled" 
-              <% }; %>>Previous Page</a>
+            <section class="data-sorting">
+                <div>
+                    <a href="?page=<%= page - 1 %>&limit=<%= limit %>&sort=<%= sort %>" <% if (disablePrev) { %>
+                        class="disabled" 
+                  <% }; %>>Previous Page</a>
+    
+                    <a href="?page=<%= page + 1 %>&limit=<%= limit %>&sort=<%= sort %>" <% if (disableNext) { %> 
+                        class="disabled" 
+                  <% }; %>>Next Page</a>
+                </div>
 
-                <a href="?page=<%= page + 1 %>&limit=<%= limit %>" <% if (disableNext) { %> 
-                    class="disabled" 
-              <% }; %>>Next Page</a>
-            </div>
+                <div class="sorting-container">
+                    <a href="?sort=">Default</a>
+                    <a href="?sort=asc">Sort by Date - Ascending</a>
+                    <a href="?sort=desc">Sort by Date - Descending</a>
+                    <a href="?sort=asc">Sort by Name - Ascending</a>
+                    <a href="?sort=desc">Sort by Name - Descending</a>
+                </div>
+            </section>
     </ul>
 
 

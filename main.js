@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 require("dotenv/config");
 const PORT = process.env.PORT || 5000;
 const Todo = require("./models/Todos");
-const alert = require("alert");
 
 const mongooseSettings = {
   useNewUrlParser: true,
@@ -14,8 +13,17 @@ const mongooseSettings = {
 
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({ extended: false }));
-
 app.set("view engine", "ejs");
+
+//express routers
+const editRouter = require("./routers/editRouter");
+app.use("/edit", editRouter);
+
+const deleteRouter = require("./routers/deleteRouter");
+app.use("/delete", deleteRouter);
+
+const markCompletedRouter = require("./routers/markCompletedRouter");
+app.use("/check", markCompletedRouter);
 
 app.get("/", async (req, res) => {
   try {
@@ -77,54 +85,6 @@ app.post("/", async (req, res) => {
     }
   }
 });
-
-app.get("/delete/:id", async (req, res) => {
-  const elementToBeDeleted = await Todo.deleteOne({ _id: req.params.id });
-  res.redirect("/");
-});
-
-app.get("/check/:id", async (req, res) => {
-  const checkedElement = await Todo.findOne({ _id: req.params.id });
-  if (checkedElement.checked === false) {
-    await Todo.updateOne({ _id: req.params.id }, { checked: "true" });
-  } else {
-    await Todo.updateOne({ _id: req.params.id }, { checked: "false" });
-  }
-  res.redirect("/");
-});
-
-app.get("/edit/:id", async (req, res) => {
-  const elementToBeEdited = await Todo.findOne({
-    _id: req.params.id,
-  });
-  const dataFromDB = await Todo.find();
-  res.render("edit", {
-    data: dataFromDB,
-    elementToBeEdited: elementToBeEdited,
-  });
-  try {
-    app.post("/edit/:id", async (req, res) => {
-      const updatedElement = await Todo.updateOne(
-        { _id: req.params.id },
-        {
-          name: req.body.name,
-        }
-      );
-      res.redirect("/");
-    });
-  } catch (err) {
-    if (err) {
-      console.log(err);
-    }
-  }
-});
-
-function limitAndPagination(model) {
-  return (req, res, next) => {
-    console.log(model);
-    next();
-  };
-}
 
 mongoose.connect(process.env.DB_CONNECTION, mongooseSettings, (err) => {
   if (err) {

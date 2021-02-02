@@ -23,7 +23,7 @@ app.set("view engine", "ejs");
 // ! fix this so that it prevents the from from submitting
 app.get('/', async(req, res) => {
     try {
-        const dataFromDB = await Todo.find()
+        const dataFromDB = await Todo.find().sort({name: 1})
         res.render("index", { data: dataFromDB, error: "" })
     } catch (err) {
         if (err) {

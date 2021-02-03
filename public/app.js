@@ -1,7 +1,6 @@
 $(document).ready(function () {
   //variables ----------------
   const localStorageCheck = JSON.parse(localStorage.getItem("darkMode"));
-  console.log(localStorageCheck);
   const hourOfDay = new Date().getHours();
   const welcome = $(".welcome");
   const daysOfWeek = [
@@ -18,20 +17,19 @@ $(document).ready(function () {
   const ulChildren = $("ul").children().length;
   const nightModeToggle = $("#toggle");
 
+  console.log(localStorageCheck === true);
+
   //check if darkmode is enabled
-  if (localStorageCheck && localStorageCheck !== null) {
-    console.log(localStorageCheck);
-    nightModeToggle.prop("checked", localStorageCheck);
-    toggleNightMode(nightModeToggle);
+  if (localStorageCheck !== null) {
+    if (localStorageCheck === true) {
+      toggleNightModeOff(nightModeToggle);
+    } else if (localStorageCheck === false) {
+      console.log("something");
+      toggleNightModeOn(nightModeToggle);
+    }
   }
 
-  // if (localStorageCheck === "false") {
-  //     toggleNightModeOn()
-  //     $("#toggle").prop("checked", true)
-  // } else if (localStorageCheck === "true") {
-  //     toggleNightModeOff()
-  //     $("#toggle").prop("checked", false)
-  // }
+  console.log(nightModeToggle.prop("checked"));
 
   //display a live clock and date of year
   $(".time").html(getTime());
@@ -61,15 +59,8 @@ $(document).ready(function () {
     $(".time").html(getTime());
   }, 1000);
 
-  //darkmode toggle
-  // $("#toggle").on("click", toggleNightMode)
-
-  //   $("#toggle").on("click", toggleNightMode($("#toggle")));
-
   $("#toggle").on("click", function () {
-    // console.log($(this).prop("checked"), localStorageCheck);
     toggleNightMode($(this));
-
     $(this).prop("checked")
       ? localStorage.setItem("darkMode", "false")
       : localStorage.setItem("darkMode", "true");
@@ -108,7 +99,7 @@ function getDate() {
 
 // !TODO fix this:
 function toggleNightMode(element) {
-  console.log(element.prop("checked"));
+  //   console.log(element.prop("checked"));
   if (element.prop("checked") === true) {
     document.body.style.setProperty("--gradient-from", "#ece9e6");
     document.body.style.setProperty("--gradient-to", "#ffffff");
@@ -130,20 +121,26 @@ function toggleNightMode(element) {
   }
 }
 
-function toggleNightModeOn() {
-  window.localStorage.setItem("darkMode", "true");
-  document.body.style.setProperty("--gradient-from", "#394265");
-  document.body.style.setProperty("--gradient-to", "#928DAB");
-  document.body.style.setProperty("--stroke-color", "#394265");
-  document.body.style.setProperty("--ul-bg-main", "hsl(227.7,27.8%,29%)");
-  document.body.style.setProperty("--font-color-main", "#f5d1ee");
+function toggleNightModeOn(element) {
+  element.prop("checked", true);
+  document.body.style.setProperty("--gradient-from", "#ece9e6");
+  document.body.style.setProperty("--gradient-to", "#ffffff");
+  document.body.style.setProperty("--stroke-color", "#fee440");
+  document.body.style.setProperty("--ul-bg-main", "#f4f5f5");
+  document.body.style.setProperty("--font-color-main", "#202147");
+  document.body.style.setProperty("--font-color-secondary", "black");
+  document.body.style.setProperty("--ul-shadow", "#eee");
+  //   window.localStorage.setItem("darkMode", "false");
 }
 
-function toggleNightModeOff() {
+function toggleNightModeOff(element) {
+  element.prop("checked", false);
   document.body.style.setProperty("--gradient-from", "#394265");
   document.body.style.setProperty("--gradient-to", "#928DAB");
   document.body.style.setProperty("--stroke-color", "#394265");
   document.body.style.setProperty("--ul-bg-main", "hsl(227.7,27.8%,29%)");
   document.body.style.setProperty("--font-color-main", "#f5d1ee");
-  window.localStorage.setItem("darkMode", "true");
+  document.body.style.setProperty("--font-color-secondary", "#edf2fb");
+  document.body.style.setProperty("--ul-shadow", "hsl(227.7,27.8%,23%)");
+  //   window.localStorage.setItem("darkMode", "true");
 }

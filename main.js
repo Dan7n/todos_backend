@@ -11,11 +11,12 @@ const mongooseSettings = {
   useUnifiedTopology: true,
 };
 
+//express middleware
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.set("view engine", "ejs");
 
-//express routers
+//express routers to keep things organized
 const editRouter = require("./routers/editRouter");
 app.use("/edit", editRouter);
 
@@ -25,6 +26,7 @@ app.use("/delete", deleteRouter);
 const markCompletedRouter = require("./routers/markCompletedRouter");
 app.use("/check", markCompletedRouter);
 
+//root directory - GET requests with pagination and sorting
 app.get("/", async (req, res) => {
   try {
     //result sorting
@@ -44,17 +46,20 @@ app.get("/", async (req, res) => {
 
     if (page === 1) {
       disablePrev = true;
-      // !Renver something here, like an error.ejs or something
     }
 
     if (page === numberOfPagesInDB) {
       disableNext = true;
     }
-
+    if (page == 0 || page > numberOfPagesInDB) {
+      console.log(page == 0, page > numberOfPagesInDB);
+      // !Render something here, like an error.ejs or something
+      res.status(404).send("Page does not exist");
+    }
     const dataFromDB = await Todo.find()
       .limit(limit)
       .skip(startIndex)
-      .sort(sort);
+      .sort({ date: sort });
 
     res.render("index", {
       data: dataFromDB,

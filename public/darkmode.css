@@ -1,0 +1,48 @@
+.toggle-container {
+    margin-top: 2rem;
+    position: absolute;
+    right: 30px;
+    top: 5px;
+    overflow: hidden;
+}
+
+#switchBtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 0.2rem;
+    background-color: #073b4c;
+    height: 2.3rem;
+    width: 6rem;
+    border-radius: 50px;
+    overflow: hidden;
+    transition: all 0.1s ease-in-out;
+}
+
+.ball {
+    height: 2rem;
+    width: 3.1rem;
+    border-radius: 50px;
+    background-color: #faf9f9;
+    position: absolute;
+    top: 2.3px;
+    padding: 3px;
+    transition: all 0.3s ease;
+    background: linear-gradient(145deg, #ffffff, #e1e0e0);
+    box-shadow: 6px 6px 24px #f5f4f4, -6px -6px 24px #fffefe;
+}
+
+#toggle {
+    position: absolute;
+    opacity: 0;
+}
+
+#toggle:checked+#switchBtn>.ball {
+    transform: translateX(42px) !important;
+}
+
+#toggle:checked+#switchBtn {
+    /* background-color: #161a1d; */
+    background-color: #f6bd60;
+}

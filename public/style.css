@@ -5,6 +5,7 @@
     --ul-bg-main: #f4f5f5;
     --font-color-main: #202147;
     --font-color-secondary: black;
+    --ul-shadow: #eee;
 }
 
 body {
@@ -72,9 +73,9 @@ ul {
     height: 55vh;
     box-shadow:
     0 -1px 1px rgba(0,0,0,0.15),
-    0 -10px 0 -5px #eee,
+    0 -10px 0 -5px var(--ul-shadow),
     0 -10px 1px -4px rgba(0,0,0,0.15),
-    0 -20px 0 -10px #eee,
+    0 -20px 0 -10px var(--ul-shadow),
     0 -20px 1px -9px rgba(0,0,0,0.15);
     border-radius: 4px;
     background-color: var(--ul-bg-main);
@@ -94,9 +95,9 @@ ul {
 ul:hover {
     box-shadow:     
     0 -1px 1px rgba(0,0,0,0.15),
-    0 -16px 0 -5px #eee,
+    0 -16px 0 -5px var(--ul-shadow),
     0 -16px 1px -4px rgba(0,0,0,0.15),
-    0 -30px 0 -10px #eee,
+    0 -30px 0 -10px var(--ul-shadow),
     0 -30px 1px -9px rgba(0,0,0,0.15);
     transform: translateY(-2px);
 }
@@ -173,6 +174,12 @@ p.smaller-text {
     font-size: 1.1rem;
     text-decoration: none;
     color: var(--font-color-main);
+    transition: 0.2s ease all;
+}
+
+.pagination-btns > div > a:hover {
+    text-decoration: underline;
+    transform: scale(1.05);
 }
 
 .todo-item-li {
@@ -239,16 +246,18 @@ a {
     font-family: 'Gilroy', sans-serif;
     font-size: 18px;
     padding-left: 4px;
+    background-color: var(--ul-bg-main);
     border: 1px solid black !important;
     -webkit-box-shadow: 6px 6px 0px -2px #000000; 
     box-shadow: 6px 6px 0px -2px #000000;
     transition: all 0.1s ease;
     margin-left: 2rem;
+    color: var(--font-color-secondary);
 }
 
 .new-todo-text:focus {
     outline: none !important;
-    background-color: var(--ul-bg-main);
+    background-color: var(--ul-shadow);
     transform: scale(1.05)
 }
 
@@ -275,6 +284,6 @@ img {
 
 a.disabled {
     pointer-events: none;
-    color: gray;
+    color: #adb5bd !important;
     cursor: default;
 }

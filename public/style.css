@@ -113,7 +113,42 @@ ul > h1 {
     animation: fadeIn 0.3s;
 }
 
-.data-sorting{
+.sorting-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem
+}
+
+.sorting-container > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem
+}
+
+.smaller-text {
+    font-size: 0.85rem;
+    margin: 0;
+    margin-bottom: 2.3rem;
+    text-decoration: none;
+    color: var(--font-color-main);
+    transition: 0.2s ease all ;
+}
+
+a.smaller-text:hover {
+    transform: scale(1.07);
+    text-decoration: underline;
+}
+
+p.smaller-text {
+    font-weight: bold;
+    color: var(--font-color-secondary);
+}
+
+.pagination-btns{
     display: flex;
     flex-direction: column;
     justify-content: bottom;
@@ -126,7 +161,7 @@ ul > h1 {
     transform: translateX(-50%)
 }
 
-.data-sorting > div {
+.pagination-btns > div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -134,7 +169,7 @@ ul > h1 {
     gap: 3rem
 }
 
-.data-sorting > div > a {
+.pagination-btns > div > a {
     font-size: 1.1rem;
     text-decoration: none;
     color: var(--font-color-main);

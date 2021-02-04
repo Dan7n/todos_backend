@@ -1,6 +1,3 @@
-const express = require("express");
-const Todo = require("../models/Todos");
-
 /*
 will be using this function as a middleware to paginate and sort results in 
 multiple routes so I'm seperating it from the rest of my code for readibility's sake
@@ -33,6 +30,7 @@ function paginationMiddleware(model) {
       res.status(404).send("Page does not exist");
     }
 
+    //sending these variables forward to the next function
     req.headers = {
       limit: limit,
       page: page,

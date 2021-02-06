@@ -67,6 +67,7 @@ app.post("/", async (req, res) => {
 
 mongoose.connect(process.env.DB_CONNECTION, mongooseSettings, (err) => {
   if (err) {
+    console.log(err);
     return;
   } else {
     app.listen(PORT, () => {

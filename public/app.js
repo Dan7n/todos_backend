@@ -14,9 +14,9 @@ $(document).ready(function () {
   ]; //using this to print out todays date
   const whatDayIsIt = daysOfWeek[new Date().getDay()];
   const $ulElement = $("#ulElement");
-  const ulChildren = $("ul").children().length;
+  const ulChildren = $("ul").children("li").length;
   const nightModeToggle = $("#toggle");
-
+  console.log($("ul").children("li").length);
   console.log(localStorageCheck === true);
 
   //check if darkmode is enabled
@@ -99,7 +99,6 @@ function getDate() {
 
 // !TODO fix this:
 function toggleNightMode(element) {
-  //   console.log(element.prop("checked"));
   if (element.prop("checked") === true) {
     document.body.style.setProperty("--gradient-from", "#ece9e6");
     document.body.style.setProperty("--gradient-to", "#ffffff");
@@ -108,7 +107,6 @@ function toggleNightMode(element) {
     document.body.style.setProperty("--font-color-main", "#202147");
     document.body.style.setProperty("--font-color-secondary", "black");
     document.body.style.setProperty("--ul-shadow", "#eee");
-    // window.localStorage.setItem("darkMode", "false");
   } else if (element.prop("checked") === false) {
     document.body.style.setProperty("--gradient-from", "#394265");
     document.body.style.setProperty("--gradient-to", "#928DAB");
@@ -117,7 +115,6 @@ function toggleNightMode(element) {
     document.body.style.setProperty("--font-color-main", "#f5d1ee");
     document.body.style.setProperty("--font-color-secondary", "#edf2fb");
     document.body.style.setProperty("--ul-shadow", "hsl(227.7,27.8%,23%)");
-    // window.localStorage.setItem("darkMode", "true");
   }
 }
 
@@ -130,7 +127,6 @@ function toggleNightModeOn(element) {
   document.body.style.setProperty("--font-color-main", "#202147");
   document.body.style.setProperty("--font-color-secondary", "black");
   document.body.style.setProperty("--ul-shadow", "#eee");
-  //   window.localStorage.setItem("darkMode", "false");
 }
 
 function toggleNightModeOff(element) {
@@ -142,5 +138,4 @@ function toggleNightModeOff(element) {
   document.body.style.setProperty("--font-color-main", "#f5d1ee");
   document.body.style.setProperty("--font-color-secondary", "#edf2fb");
   document.body.style.setProperty("--ul-shadow", "hsl(227.7,27.8%,23%)");
-  //   window.localStorage.setItem("darkMode", "true");
 }

@@ -24,10 +24,15 @@ function paginationMiddleware(model) {
     if (page === numberOfPagesInDB) {
       disableNext = true;
     }
-    if (page == 0 || page > numberOfPagesInDB) {
-      console.log(page == 0, page > numberOfPagesInDB);
-      // !Render something here, like an error.ejs or something
-      res.status(404).send("Page does not exist");
+
+    //controlling for no todos in DB
+    if (numberOfPagesInDB !== 0) {
+      if (page == 0 || page > numberOfPagesInDB) {
+        console.log(page, numberOfPagesInDB);
+        console.log(page == 0, page > numberOfPagesInDB);
+        // !Render something here, like an error.ejs or something
+        res.status(404).send("Page does not exist");
+      }
     }
 
     //sending these variables forward to the next function

@@ -16,20 +16,15 @@ $(document).ready(function () {
   const $ulElement = $("#ulElement");
   const ulChildren = $("ul").children("li").length;
   const nightModeToggle = $("#toggle");
-  console.log($("ul").children("li").length);
-  console.log(localStorageCheck === true);
 
   //check if darkmode is enabled
   if (localStorageCheck !== null) {
     if (localStorageCheck === true) {
       toggleNightModeOff(nightModeToggle);
     } else if (localStorageCheck === false) {
-      console.log("something");
       toggleNightModeOn(nightModeToggle);
     }
   }
-
-  console.log(nightModeToggle.prop("checked"));
 
   //display a live clock and date of year
   $(".time").html(getTime());
@@ -97,7 +92,6 @@ function getDate() {
   }-${new Date().getDate()}`;
 }
 
-// !TODO fix this:
 function toggleNightMode(element) {
   if (element.prop("checked") === true) {
     document.body.style.setProperty("--gradient-from", "#ece9e6");

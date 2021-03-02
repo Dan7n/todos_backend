@@ -62,6 +62,19 @@ $(document).ready(function () {
   });
 });
 
+const errorMessage = $(document.body).find("p.error-msg");
+if (errorMessage) {
+  window.setTimeout(() => {
+    removeMessage(errorMessage);
+  }, 6000);
+}
+const successMessage = $(document.body).find("p.success-msg");
+if (successMessage) {
+  window.setTimeout(() => {
+    removeMessage(successMessage);
+  }, 6000);
+}
+
 // * --------------- functions ---------------
 
 const sayHi = (time, element) => {
@@ -90,6 +103,17 @@ function getDate() {
   return `${new Date().getFullYear()}-${
     new Date().getMonth() + 1
   }-${new Date().getDate()}`;
+}
+
+function removeMessage(messageElement) {
+  console.log("step one");
+  messageElement
+    .fadeOut("slow", function () {
+      $(this).trigger("ElementFadedOut");
+    })
+    .on("ElementFadedOut", () => {
+      messageElement.remove();
+    });
 }
 
 function toggleNightMode(element) {

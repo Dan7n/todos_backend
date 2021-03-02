@@ -12,38 +12,42 @@
 </head>
 <body>
     <div class="landing-welcome"><h1>Welcome to my todo list app!</h1></div>
+    <% if (success) { %>
+        <p class="success-msg"><%= success %> </p>
+   <% } %> 
+   <% if (err) { %>
+    <p class="error-msg"><%= err %> </p>
+<% } %> 
+
+
     <div class="sign-in-and-up">
-        <div>
-            <h2>New user? Click <a href="#" id="signUp">here</a> to sign up!</h2>
-        </div>
-        <div>
-            <h2>Already have an account? Sign in to get started!</h2>
-            <form action="/register" method="POST">
-                <h1>Register for an account</h1>
-        
-    
-                <label for="username">
-                    <input type="text" name="username" required autocomplete="off">
-                    <span class="placeholder">Username</span>
-                    </label>    
-                    <label for="email">
-                        <input type="text" name="email" required autocomplete="off">
-                        <span class="placeholder">Email address</span>
-                    </label>
-                    <label for="password">
-                        <input type="password" name="password" required>
-                        <span class="placeholder">Password</span>
-                    </label>    
-                    <label for="password-repeat">
-                        <input type="password" name="password-repeat" required>
-                        <span class="placeholder">Repeat password</span>
-                    </label>    
-                <div>
-                    <button type="submit">Register</button>
-                </div>
-            </form>
-    
+            <div class="form-container">
+                <form action="/login" method="POST">
+                    <h1>Login to your account to get started</h1>
+                        <label for="email">
+                            <input type="text" name="email" required autocomplete="off">
+                            <span class="placeholder">Email address</span>
+                        </label>    
+                        <label for="password">
+                            <input type="password" name="password" required>
+                            <span class="placeholder">Password</span>
+                        </label>   
+                        <div class="reset">
+                            <a href="/reset-password">Forgot your password?</a>
+                        </div> 
+                    <div>
+                        <button type="submit">Register</button>
+                    </div>
+                </form>            
+            </div>            
+        <div class="sign-up">
+            <h2>Not a user yet? Click <a href="/signup" id="signUp">here</a> to sign up for a new account</h2>
         </div>
     </div>
+
+            <!-- * SCRIPTS * -->
+            <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+            <script src="./../app.js"></script>
+    
 </body>
 </html>

@@ -6,6 +6,7 @@ require("dotenv/config");
 const PORT = process.env.PORT || 5000;
 const Todo = require("./models/Todos");
 const paginationMiddleware = require("./routers/paginationMiddleware.js");
+const cookieParser = require("cookie-parser");
 
 const mongooseSettings = {
   useNewUrlParser: true,
@@ -15,6 +16,7 @@ const mongooseSettings = {
 //express middleware
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser()); //used to read and handle cookies
 app.set("view engine", "ejs");
 
 //express routers to keep things organized
@@ -30,8 +32,14 @@ app.use("/check", markCompletedRouter);
 const mainApp = require("./routers/renderMainApp.js");
 app.use("/main", mainApp);
 
+const loginRouter = require("./routers/loginRouter.js");
+app.use("/login", loginRouter);
+
+const signupRouter = require("./routers/signupRouter.js");
+app.use("/signup", signupRouter);
+
 app.get("/", (req, res) => {
-  res.render("landingPage.ejs");
+  res.render("landingPage.ejs", { success: "" });
 });
 
 //root directory - GET requests with pagination and sorting

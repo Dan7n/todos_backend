@@ -4,18 +4,23 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "nodemon main.js"
+        "start": "nodemon main.js",
+        "compile": "node-sass --output-style nested --watch  scss/**.scss --output public/"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {
         "alert": "^5.0.10",
+        "bcrypt": "^5.0.1",
+        "cookie-parser": "^1.4.5",
         "dotenv": "^8.2.0",
         "ejs": "^3.1.5",
         "express": "^4.17.1",
         "jquery": "^3.5.1",
-        "mongoose": "^5.11.12"
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^5.11.12",
+        "node-sass": "^5.0.0"
     },
     "devDependencies": {
         "@types/dotenv": "^8.2.0",

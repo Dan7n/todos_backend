@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./../style.css" rel="stylesheet">
+    <link href="./../landingPage.css" rel="stylesheet">
+    <link href="./../darkmode.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/mfd/09b70eb47474836f25a21660282ce0fd/raw/e06a670afcb2b861ed2ac4a1ef752d062ef6b46b/Gilroy.css">
+    <title>Landing Page - Todos</title>
+</head>
+<body>
+    <div class="landing-welcome"><h1>Welcome to my todo list app!</h1></div>
+    <div class="sign-in-and-up">
+        <div>
+            <h2>New user? Click <a href="#" id="signUp">here</a> to sign up!</h2>
+        </div>
+        <div>
+            <h2>Already have an account? Sign in to get started!</h2>
+            <form action="/register" method="POST">
+                <h1>Register for an account</h1>
+        
+    
+                <label for="username">
+                    <input type="text" name="username" required autocomplete="off">
+                    <span class="placeholder">Username</span>
+                    </label>    
+                    <label for="email">
+                        <input type="text" name="email" required autocomplete="off">
+                        <span class="placeholder">Email address</span>
+                    </label>
+                    <label for="password">
+                        <input type="password" name="password" required>
+                        <span class="placeholder">Password</span>
+                    </label>    
+                    <label for="password-repeat">
+                        <input type="password" name="password-repeat" required>
+                        <span class="placeholder">Repeat password</span>
+                    </label>    
+                <div>
+                    <button type="submit">Register</button>
+                </div>
+            </form>
+    
+        </div>
+    </div>
+</body>
+</html>

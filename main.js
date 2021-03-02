@@ -27,43 +27,50 @@ app.use("/delete", deleteRouter);
 const markCompletedRouter = require("./routers/markCompletedRouter");
 app.use("/check", markCompletedRouter);
 
+const mainApp = require("./routers/renderMainApp.js");
+app.use("/main", mainApp);
+
+app.get("/", (req, res) => {
+  res.render("landingPage.ejs");
+});
+
 //root directory - GET requests with pagination and sorting
-app.get("/", paginationMiddleware(Todo), async (req, res) => {
-  try {
-    const dataFromDB = await Todo.find()
-      .limit(req.headers.limit)
-      .skip(req.headers.startIndex)
-      .sort({ date: req.headers.sort });
+// app.get("/", paginationMiddleware(Todo), async (req, res) => {
+//   try {
+//     const dataFromDB = await Todo.find()
+//       .limit(req.headers.limit)
+//       .skip(req.headers.startIndex)
+//       .sort({ date: req.headers.sort });
 
-    res.render("index", {
-      data: dataFromDB,
-      error: "",
-      sort: req.headers.sort,
-      page: req.headers.page,
-      dataCount: req.headers.dataCount,
-      limit: req.headers.limit,
-      disablePrev: req.headers.disablePrev,
-      disableNext: req.headers.disableNext,
-    });
-  } catch (err) {
-    if (err) {
-      throw new Error("Opps! Looks like you have an error! " + err);
-    }
-  }
-});
+//     res.render("index", {
+//       data: dataFromDB,
+//       error: "",
+//       sort: req.headers.sort,
+//       page: req.headers.page,
+//       dataCount: req.headers.dataCount,
+//       limit: req.headers.limit,
+//       disablePrev: req.headers.disablePrev,
+//       disableNext: req.headers.disableNext,
+//     });
+//   } catch (err) {
+//     if (err) {
+//       throw new Error("Opps! Looks like you have an error! " + err);
+//     }
+//   }
+// });
 
-app.post("/", async (req, res) => {
-  try {
-    const newData = await new Todo({
-      name: req.body.task,
-    }).save();
-    res.redirect("/");
-  } catch (err) {
-    if (err) {
-      res.render("index", { error: err });
-    }
-  }
-});
+// app.post("/", async (req, res) => {
+//   try {
+//     const newData = await new Todo({
+//       name: req.body.task,
+//     }).save();
+//     res.redirect("/");
+//   } catch (err) {
+//     if (err) {
+//       res.render("index", { error: err });
+//     }
+//   }
+// });
 
 mongoose.connect(process.env.DB_CONNECTION, mongooseSettings, (err) => {
   if (err) {

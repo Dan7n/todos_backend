@@ -9,22 +9,25 @@ const paginationMiddleware = require("./routers/paginationMiddleware.js");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const crypto = require("crypto");
+const MongoStore = require("connect-mongo").default;
 
 const mongooseSettings = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useFindAndModify: false,
 };
 
 //express session middleware to store a unique session ID for each logged in user
 app.use(
   session({
-    // genid: function (req) {
-    //   return crypto.randomBytes(64).toString("hex");
-    // },
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false }, //secure: true means the cookie will only be set on https requests
+    rolling: true,
+    resave: true,
+    maxAge: 36000000,
+    store: MongoStore.create({ mongoUrl: process.env.DB_CONNECTION }),
+    cookie: { secure: false, maxAge: 36000000 }, //secure: true means the cookie will only be set on https requests
   })
 );
 

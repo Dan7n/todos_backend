@@ -8,16 +8,29 @@ const tokenChecker = require("./../middleware/tokenChecker.js");
 
 mainApp.get("/", tokenChecker, paginationMiddleware(Todo), async (req, res) => {
   try {
-    // const dataFromUserCollection = await User.findOne({ _id: req.session.user.userId})
-    const dataFromDB = await Todo.find()
-      .limit(req.headers.limit)
-      .skip(req.headers.startIndex)
-      .sort({ date: req.headers.sort });
+    const dataFromUserCollection = await User.findOne({
+      _id: req.session.user.userId,
+    });
+    //   .limit(req.headers.limit)
+    //   .skip(req.headers.startIndex)
+    //   .sort({ date: req.headers.sort });
+
+    await dataFromUserCollection
+      .populate({
+        path: "todos",
+        options: {
+          limit: req.headers.limit,
+          skip: req.headers.startIndex,
+          sort: { date: req.headers.sort },
+        },
+      })
+      .execPopulate();
+    //   const dataFromDB = await Todo.find()
 
     // console.log(req.session.user.userId);
 
     res.render("index", {
-      data: dataFromDB,
+      data: dataFromUserCollection.todos,
       error: "",
       sort: req.headers.sort,
       page: req.headers.page,
@@ -48,31 +61,14 @@ mainApp.post("/", async (req, res) => {
     //find the spacific user that's logged in and update thier todos array
     const foundUser = await User.findByIdAndUpdate(req.session.user.userId, {
       $push: {
-        todos: req.session.user.newTodoObject._id,
+        todos: req.session.user.newTodoObject,
       },
     });
-
-    console.log(foundUser.todos);
-    // await User.findOne({ _id: foundUser._id }, function (err, foundUser) {
-    //   if (err) res.send(err);
-    //   foundUser.populate("todos").execPopulate();
-    //   console.log(foundUser.todos);
-    // });
-
-    // const test = await User.findOne({ _id: foundUser._id })
-    //   .populate("todo")
-    //   .execPopulate();
-    //   .populate("Todo")
-    //   .execPopulate((err, newTodo) => {
-    //     if (err) console.log(err);
-    //   });
-    console.log(test.todos);
 
     res.redirect("/main");
   } catch (err) {
     if (err) {
       res.render("index", { error: err });
-      //   res.send(err);
     }
   }
 });

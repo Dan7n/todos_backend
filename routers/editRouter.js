@@ -28,7 +28,7 @@ editRouter.get("/:id", paginationMiddleware(Todo), async (req, res) => {
         }
       );
       res.redirect(
-        `/?page=${req.headers.page}&limit=${req.headers.limit}&sort=${req.headers.sort}`
+        `/main?page=${req.headers.page}&limit=${req.headers.limit}&sort=${req.headers.sort}`
       );
     });
   } catch (err) {

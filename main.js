@@ -7,16 +7,32 @@ const PORT = process.env.PORT || 5000;
 const Todo = require("./models/Todos");
 const paginationMiddleware = require("./routers/paginationMiddleware.js");
 const cookieParser = require("cookie-parser");
+const session = require("express-session");
+const crypto = require("crypto");
 
 const mongooseSettings = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
 
+//express session middleware to store a unique session ID for each logged in user
+app.use(
+  session({
+    // genid: function (req) {
+    //   return crypto.randomBytes(64).toString("hex");
+    // },
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false }, //secure: true means the cookie will only be set on https requests
+  })
+);
+
 //express middleware
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser()); //used to read and handle cookies
+
 app.set("view engine", "ejs");
 
 //express routers to keep things organized
@@ -39,7 +55,7 @@ const signupRouter = require("./routers/signupRouter.js");
 app.use("/signup", signupRouter);
 
 app.get("/", (req, res) => {
-  res.render("landingPage.ejs", { success: "" });
+  res.render("landingPage.ejs", { success: "", err: "" });
 });
 
 //root directory - GET requests with pagination and sorting

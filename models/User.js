@@ -32,6 +32,7 @@ const UserSchema = new mongoose.Schema({
       },
     },
   ],
+  todos: [{ type: mongoose.Schema.Types.ObjectId, ref: "Todo" }],
 });
 
 UserSchema.methods.storeToken = async function (
@@ -41,5 +42,9 @@ UserSchema.methods.storeToken = async function (
   this.token.push({ tokenID: passwordResetToken, expiration: expirationDate });
   await this.save();
 };
+
+// UserSchema.methods.createTodo = async function (todoName) {
+//     this.
+// }
 
 module.exports = mongoose.model("User", UserSchema);

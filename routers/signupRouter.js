@@ -34,6 +34,7 @@ signupRouter.post("/", async (req, res) => {
   res.render("landingPage.ejs", {
     success:
       "Your account has been successfully created! Please log in to start using the app",
+    err: "",
   });
 });
 

@@ -26,12 +26,14 @@ loginRouter.post("/", async (req, res) => {
   const correctUser = { name: loginUser };
   const token = jwt.sign(correctUser, process.env.PRIVATE_KEY);
   if (token) {
-    console.log("webtoken sucess");
     const cookie = res.cookie.token;
-
     //Make sure the client doesn't alreay have a cookie
     if (!cookie) {
       res.cookie("validLoginAttempt", token);
+      const session = (req.session.user = {
+        userId: loginUser._id,
+      });
+      //   console.log(session);
       res.redirect("/main");
     }
   }

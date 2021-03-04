@@ -1,14 +1,19 @@
 const express = require("express");
 const mainApp = express.Router();
 const Todo = require("../models/Todos");
-const paginationMiddleware = require("./paginationMiddleware");
+const User = require("../models/User");
 
-mainApp.get("/", paginationMiddleware(Todo), async (req, res) => {
+const paginationMiddleware = require("./paginationMiddleware");
+const tokenChecker = require("./../middleware/tokenChecker.js");
+
+mainApp.get("/", tokenChecker, paginationMiddleware(Todo), async (req, res) => {
   try {
     const dataFromDB = await Todo.find()
       .limit(req.headers.limit)
       .skip(req.headers.startIndex)
       .sort({ date: req.headers.sort });
+
+    // console.log(req.session);
 
     res.render("index", {
       data: dataFromDB,
@@ -29,13 +34,24 @@ mainApp.get("/", paginationMiddleware(Todo), async (req, res) => {
 
 mainApp.post("/", async (req, res) => {
   try {
+    const sessionCookie = req.cookies["connect.sid"];
+    // const userId = cookieParser.signedCookies(
+    //   sessionCookie,
+    //   process.env.SESSION_SECRET
+    // );
+
+    // const loggedInUser = await User.findOne({
+    //   email: req.session.user.userId,
+    // });
     const newData = await new Todo({
       name: req.body.task,
     }).save();
-    res.redirect("/");
+
+    res.redirect("/main");
   } catch (err) {
     if (err) {
-      res.render("index", { error: err });
+      //   res.render("index", { error: err });
+      res.send(err);
     }
   }
 });

@@ -4,18 +4,28 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "nodemon main.js"
+        "start": "nodemon main.js",
+        "compile": "node-sass --output-style nested --watch  scss/signup.scss --output public/"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "@sendgrid/mail": "^7.4.2",
         "alert": "^5.0.10",
+        "bcrypt": "^5.0.1",
+        "connect-mongo": "^4.2.2",
+        "cookie-parser": "^1.4.5",
         "dotenv": "^8.2.0",
         "ejs": "^3.1.5",
         "express": "^4.17.1",
+        "express-session": "^1.17.1",
         "jquery": "^3.5.1",
-        "mongoose": "^5.11.12"
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^5.11.12",
+        "node-sass": "^5.0.0",
+        "nodemailer": "^6.5.0",
+        "nodemailer-sendgrid-transport": "^0.2.0"
     },
     "devDependencies": {
         "@types/dotenv": "^8.2.0",

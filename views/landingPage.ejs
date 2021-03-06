@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./../style.css" rel="stylesheet">
+    <link href="./../landingPage.css" rel="stylesheet">
+    <link href="./../darkmode.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/mfd/09b70eb47474836f25a21660282ce0fd/raw/e06a670afcb2b861ed2ac4a1ef752d062ef6b46b/Gilroy.css">
+    <title>Landing Page - Todos</title>
+</head>
+<body>
+    <div class="landing-welcome"><h1>Welcome to my todo list app!</h1></div>
+    <% if (success) { %>
+        <p class="success-msg"><%= success %> </p>
+   <% } %> 
+   <% if (err) { %>
+    <p class="error-msg"><%= err %> </p>
+<% } %> 
+
+
+    <div class="sign-in-and-up">
+            <div class="form-container">
+                <form action="/login" method="POST">
+                    <h1>Login to your account to get started</h1>
+                        <label for="email">
+                            <input type="text" name="email" required autocomplete="off" value="dan7.isaac@gmail.com">
+                            <span class="placeholder">Email address</span>
+                        </label>    
+                        <label for="password">
+                            <input type="password" name="password" required value="123123">
+                            <span class="placeholder">Password</span>
+                        </label>   
+                        <div class="reset">
+                            <a href="/reset-password">Forgot your password?</a>
+                        </div> 
+                    <div>
+                        <button type="submit">Login</button>
+                    </div>
+                </form>            
+            </div>            
+        <div class="sign-up">
+            <h2>Not a user yet? Click <a href="/signup" id="signUp">here</a> to sign up for a new account</h2>
+        </div>
+    </div>
+
+            <!-- * SCRIPTS * -->
+            <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+            <script src="./../app.js"></script>
+    
+</body>
+</html>

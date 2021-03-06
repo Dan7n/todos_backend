@@ -14,7 +14,7 @@ markCompletedRouter.get(
       await Todo.updateOne({ _id: req.params.id }, { checked: "false" });
     }
     res.redirect(
-      `/?page=${req.headers.page}&limit=${req.headers.limit}&sort=${req.headers.sort}`
+      `/main?page=${req.headers.page}&limit=${req.headers.limit}&sort=${req.headers.sort}`
     );
   }
 );

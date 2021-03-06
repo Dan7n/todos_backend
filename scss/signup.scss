@@ -20,7 +20,7 @@ body {
             border-radius: 6px;
             padding: 0.6rem 2.8rem;
             background-color: hsl(259, 85%, 50%);
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Gilroy', sans-serif;
             color: white;
             transition: all 0.2s ease;
             &:hover {
@@ -94,7 +94,7 @@ body {
                     border: 1px solid $gray-300;
                     padding: 0.6rem 2.8rem;
                     background-color: hsl(259, 85%, 50%);
-                    font-family: 'Poppins', sans-serif;
+                    font-family: 'Gilroy', sans-serif;
                     font-size: 0.9rem;
                     margin-top: 2rem;
                     color: white;
@@ -117,5 +117,39 @@ body {
                     }
                 }
             }
+
+
+            .password-reset-info {
+                @include center;
+                flex-direction: column;
+                h1 {
+                    font-size: 2.5rem;
+                }
+            }
+    }
+    .reset-password {
+        @include center;
+        flex-direction: column;
+        h1 {
+            font-size: 2.5rem;
+        }
+        .bigger-font {
+            font-size: 1.3rem;
+        }
+        a {
+            color: #2a0972;
+            font-weight: 500;
+            transition: all ease .2s;
+            &:hover {
+                color: hsl(259, 85%, 50%);
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    .new-password-container {
+        h1 {
+            text-align: center;
+        }
     }
 }

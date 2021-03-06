@@ -57,47 +57,15 @@ app.use("/login", loginRouter);
 const signupRouter = require("./routers/signupRouter.js");
 app.use("/signup", signupRouter);
 
+const resetPasswordRouter = require("./routers/resetPasswordRouter");
+app.use("/reset-password", resetPasswordRouter);
+
+const updateAccountInfo = require("./routers/updateAccountInfo");
+app.use("/update-account-info", updateAccountInfo);
+//root directory - GET requests with pagination and sorting
 app.get("/", (req, res) => {
   res.render("landingPage.ejs", { success: "", err: "" });
 });
-
-//root directory - GET requests with pagination and sorting
-// app.get("/", paginationMiddleware(Todo), async (req, res) => {
-//   try {
-//     const dataFromDB = await Todo.find()
-//       .limit(req.headers.limit)
-//       .skip(req.headers.startIndex)
-//       .sort({ date: req.headers.sort });
-
-//     res.render("index", {
-//       data: dataFromDB,
-//       error: "",
-//       sort: req.headers.sort,
-//       page: req.headers.page,
-//       dataCount: req.headers.dataCount,
-//       limit: req.headers.limit,
-//       disablePrev: req.headers.disablePrev,
-//       disableNext: req.headers.disableNext,
-//     });
-//   } catch (err) {
-//     if (err) {
-//       throw new Error("Opps! Looks like you have an error! " + err);
-//     }
-//   }
-// });
-
-// app.post("/", async (req, res) => {
-//   try {
-//     const newData = await new Todo({
-//       name: req.body.task,
-//     }).save();
-//     res.redirect("/");
-//   } catch (err) {
-//     if (err) {
-//       res.render("index", { error: err });
-//     }
-//   }
-// });
 
 mongoose.connect(process.env.DB_CONNECTION, mongooseSettings, (err) => {
   if (err) {

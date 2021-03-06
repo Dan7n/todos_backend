@@ -17,7 +17,7 @@ body {
       border-radius: 6px;
       padding: 0.6rem 2.8rem;
       background-color: #5813ec;
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Gilroy', sans-serif;
       color: white;
       transition: all 0.2s ease; }
       body nav a:hover {
@@ -86,7 +86,7 @@ body {
         border: 1px solid #D4D4D8;
         padding: 0.6rem 2.8rem;
         background-color: #5813ec;
-        font-family: 'Poppins', sans-serif;
+        font-family: 'Gilroy', sans-serif;
         font-size: 0.9rem;
         margin-top: 2rem;
         color: white;
@@ -102,3 +102,28 @@ body {
         body .form-container form .reset a:hover {
           color: #5813ec;
           transform: scale(1.1); }
+    body .form-container .password-reset-info {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column; }
+      body .form-container .password-reset-info h1 {
+        font-size: 2.5rem; }
+  body .reset-password {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; }
+    body .reset-password h1 {
+      font-size: 2.5rem; }
+    body .reset-password .bigger-font {
+      font-size: 1.3rem; }
+    body .reset-password a {
+      color: #2a0972;
+      font-weight: 500;
+      transition: all ease .2s; }
+      body .reset-password a:hover {
+        color: #5813ec;
+        transform: scale(1.1); }
+  body .new-password-container h1 {
+    text-align: center; }

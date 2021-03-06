@@ -2,18 +2,25 @@ const express = require("express");
 const mainApp = express.Router();
 const Todo = require("../models/Todos");
 const User = require("../models/User");
+const jwt = require("jsonwebtoken");
 
 const paginationMiddleware = require("./paginationMiddleware");
 const tokenChecker = require("./../middleware/tokenChecker.js");
 
 mainApp.get("/", tokenChecker, paginationMiddleware(Todo), async (req, res) => {
   try {
+    /*
+    !  I couldv'e dome something like this instead to get the user object, but I wanted to learn more about the express-session middleware, and that's why I went with the req.session way instead
+    
+    const userObject = jwt.verify(
+      req.cookies.validLoginAttempt,
+      process.env.PRIVATE_KEY
+    );
+    */
+
     const dataFromUserCollection = await User.findOne({
       _id: req.session.user.userId,
     });
-    //   .limit(req.headers.limit)
-    //   .skip(req.headers.startIndex)
-    //   .sort({ date: req.headers.sort });
 
     await dataFromUserCollection
       .populate({

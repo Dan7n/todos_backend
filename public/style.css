@@ -26,6 +26,21 @@ body {
     overflow: hidden !important;
 }
 
+#logout {
+    margin-top: 2rem;
+    position: absolute;
+    left: 30px;
+    top: 5px;
+    color: #2a0972;
+    font-weight: 500;
+    transition: all ease .2s;
+    font-size: 1.4rem
+}
+
+#logout:hover {
+    color: hsl(259, 85%, 50%);
+    transform: scale(1.1);
+}
 
 .welcome {
     margin: 0;

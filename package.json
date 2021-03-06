@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "nodemon main.js",
-        "compile": "node-sass --output-style nested --watch  scss/signup.scss --output public/"
+        "compile": "node-sass --output-style nested --watch  scss/landingPage.scss --output public/"
     },
     "keywords": [],
     "author": "",

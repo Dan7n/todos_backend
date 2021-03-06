@@ -62,6 +62,9 @@ app.use("/reset-password", resetPasswordRouter);
 
 const updateAccountInfo = require("./routers/updateAccountInfo");
 app.use("/update-account-info", updateAccountInfo);
+
+const logoutRouter = require("./routers/logout");
+app.use("/logout", logoutRouter);
 //root directory - GET requests with pagination and sorting
 app.get("/", (req, res) => {
   res.render("landingPage.ejs", { success: "", err: "" });

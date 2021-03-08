@@ -16,6 +16,9 @@ $(document).ready(function () {
   const $ulElement = $("#ulElement");
   const ulChildren = $("ul").children("li").length;
   const nightModeToggle = $("#toggle");
+  const userInputedPassword = $("#originalPassword");
+  const repeatedPassword = $("#passwordRepeat");
+  const registerAccountBtn = $("#registerAccount");
 
   //check if darkmode is enabled
   if (localStorageCheck !== null) {
@@ -25,6 +28,28 @@ $(document).ready(function () {
       toggleNightModeOn(nightModeToggle);
     }
   }
+
+  //on signup, check if the two password fields have the same value
+  $("#registerNewAccount").on("submit", function (e) {
+    e.preventDefault();
+    if (userInputedPassword.val() !== repeatedPassword.val()) {
+      $(
+        `<p class="error-msg">The passwords you've entered do not match. Please make sure you enter the exact same password in both fields</p>`
+      )
+        .insertBefore($("#usernameLabel"))
+        .hide()
+        .fadeIn(400)
+        .delay(6000)
+        .fadeOut(400, function () {
+          $(this).trigger("fadeOutCompleted");
+        });
+      $(".error-msg").on("fadeOutCompleted", function () {
+        $(this).remove();
+      });
+    } else {
+      this.submit();
+    }
+  });
 
   //display a live clock and date of year
   $(".time").html(getTime());
@@ -106,7 +131,6 @@ function getDate() {
 }
 
 function removeMessage(messageElement) {
-  console.log("step one");
   messageElement
     .fadeOut("slow", function () {
       $(this).trigger("ElementFadedOut");

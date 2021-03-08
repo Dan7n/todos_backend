@@ -28,9 +28,6 @@ function paginationMiddleware(model) {
     //controlling for no todos in DB
     if (numberOfPagesInDB !== 0) {
       if (page == 0 || page > numberOfPagesInDB) {
-        console.log(page, numberOfPagesInDB);
-        console.log(page == 0, page > numberOfPagesInDB);
-        // !Render something here, like an error.ejs or something
         res.status(404).send("Page does not exist");
       }
     }

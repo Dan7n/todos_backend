@@ -24,13 +24,12 @@ signupRouter.post("/", async (req, res) => {
       if (err.message.includes("E11000")) {
         res.render("signup.ejs", {
           err:
-            "Looks like there's already a user registered with that email adress! Please click the 'Forget your password' button to recover your account",
+            "Looks like there's already a user registered with that email adress! Please go back to the login page and click the 'Forget your password' button to recover your account",
         });
       }
       res.render("signup.ejs", { err: err });
     }
   }
-  console.log("success");
   res.render("landingPage.ejs", {
     success:
       "Your account has been successfully created! Please log in to start using the app",

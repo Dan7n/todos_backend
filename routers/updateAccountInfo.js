@@ -29,7 +29,6 @@ updateAccountInfo.get("/:resetToken", async (req, res) => {
 
 updateAccountInfo.post("/", async (req, res) => {
   const resetToken = req.body.resetToken;
-  console.log(resetToken);
   const tokenVertifier = jwt.verify(resetToken, process.env.PRIVATE_KEY);
   const userId = tokenVertifier.userId;
   const newPasswordInPlainText = req.body.password;
@@ -55,7 +54,6 @@ updateAccountInfo.post("/", async (req, res) => {
     });
   } catch (err) {
     if (err) {
-      console.log(err);
       res.render("landingPage.ejs", {
         err:
           "There has been an error, please try to reset your password again!",

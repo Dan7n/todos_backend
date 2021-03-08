@@ -2,7 +2,7 @@ const express = require("express");
 const editRouter = express.Router();
 const Todo = require("../models/Todos");
 const User = require("../models/User");
-const paginationMiddleware = require("./paginationMiddleware");
+const paginationMiddleware = require("../middleware/paginationMiddleware");
 
 editRouter.get("/:id", paginationMiddleware(Todo), async (req, res) => {
   const elementToBeEdited = await Todo.findOne({

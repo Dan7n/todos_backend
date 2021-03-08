@@ -18,13 +18,13 @@
         <a href="/">Login</a>
     </nav>
     <div class="form-container">
-        <form action="/signup" method="POST">
+        <form action="/signup" method="POST" id="registerNewAccount">
             <h1>Register for an account</h1>
             <% if (err) { %>
                 <p class="error-msg"><%= err %> </p>
            <% } %> 
 
-            <label for="username">
+            <label for="username" id="usernameLabel">
                 <input type="text" name="username" required autocomplete="off">
                 <span class="placeholder">Username</span>
                 </label>    
@@ -33,15 +33,15 @@
                     <span class="placeholder">Email address</span>
                 </label>
                 <label for="password">
-                    <input type="password" name="password" required>
+                    <input id="originalPassword" type="password" name="password" required>
                     <span class="placeholder">Password</span>
                 </label>    
                 <label for="password-repeat">
-                    <input type="password" name="password-repeat" required>
+                    <input id="passwordRepeat" type="password" name="password-repeat" required>
                     <span class="placeholder">Repeat password</span>
                 </label>    
             <div>
-                <button type="submit">Register</button>
+                <button id="registerAccount" type="submit">Register</button>
             </div>
         </form>
     </div>

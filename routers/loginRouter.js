@@ -34,7 +34,6 @@ loginRouter.post("/", async (req, res) => {
         userId: loginUser._id,
       });
       req.session.cookie.expires = false;
-      //   console.log(session);
       res.redirect("/main");
     }
   }

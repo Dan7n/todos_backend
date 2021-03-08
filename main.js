@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 require("dotenv/config");
 const PORT = process.env.PORT || 5000;
 const Todo = require("./models/Todos");
-const paginationMiddleware = require("./routers/paginationMiddleware.js");
+// const paginationMiddleware = require("./middleware/paginationMiddleware");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const crypto = require("crypto");
@@ -13,6 +13,7 @@ const MongoStore = require("connect-mongo").default;
 
 const mongooseSettings = {
   useNewUrlParser: true,
+  useCreateIndex: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
 };

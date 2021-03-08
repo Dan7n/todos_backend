@@ -1,7 +1,7 @@
 const express = require("express");
 const markCompletedRouter = express.Router();
 const Todo = require("../models/Todos");
-const paginationMiddleware = require("./paginationMiddleware");
+const paginationMiddleware = require("../middleware/paginationMiddleware");
 
 markCompletedRouter.get(
   "/:id",
